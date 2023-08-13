@@ -333,107 +333,29 @@ uint16_t GD3300::MP3Answer(){
 
     case 0x43:
        //+= " -> Vol playing: " + String(ansbuf[6], DEC);
-	  switch(ansbuf[6]){
-        case 0: decodedMP3Answer = 0x05;break;//|= (1<<5);                              break;
-        case 1: decodedMP3Answer = 0x15;break;//|= (1<<5) | (1<<13);                    break;
-        case 2: decodedMP3Answer = 0x25;break;//|= (1<<5) | (1<<14);                    break;
-		case 3: decodedMP3Answer = 0x35;break;//|= (1<<5) | (1<<13) | (1<<14);          break;
-		case 4: decodedMP3Answer = 0x45;break;//|= (1<<5) | (1<<15);                    break;
-		case 5: decodedMP3Answer = 0x55;break;//|= (1<<5) | (1<<13) | (1<<15);          break;
-		case 6: decodedMP3Answer = 0x65;break;//|= (1<<5) | (1<<14) | (1<<15);          break;
-		case 7: decodedMP3Answer = 0x75;break;//|= (1<<5) | (1<<13) | (1<<14) | (1<<15);break;
-		case 8: decodedMP3Answer = 0x0085;break;//|= (1<<5) | (1<<16);                    break;
-		case 9: decodedMP3Answer = 0x0095;break;//|= (1<<5) | (1<<13) | (1<<16);          break;
-		case 10: decodedMP3Answer = 0x00A5;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 11: decodedMP3Answer = 0x00B5;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 12: decodedMP3Answer = 0x00C5;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 13: decodedMP3Answer = 0x00D5;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 14: decodedMP3Answer = 0x00E5;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 15: decodedMP3Answer = 0x00F5;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		}
+
+    decodedMP3Answer = ansbuf[6];
+	  
       break;
 
     case 0x48://" -> File count: "
     decodedMP3Answer = ansbuf[6];
-    /*
-      switch(ansbuf[6]){
-        case 0: decodedMP3Answer = 0x06;break;//|= (1<<5);                              break;
-        case 1: decodedMP3Answer = 0x16;break;//|= (1<<5) | (1<<13);                    break;
-        case 2: decodedMP3Answer = 0x26;break;//|= (1<<5) | (1<<14);                    break;
-		case 3: decodedMP3Answer = 0x36;break;//|= (1<<5) | (1<<13) | (1<<14);          break;
-		case 4: decodedMP3Answer = 0x46;break;//|= (1<<5) | (1<<15);                    break;
-		case 5: decodedMP3Answer = 0x56;break;//|= (1<<5) | (1<<13) | (1<<15);          break;
-		case 6: decodedMP3Answer = 0x66;break;//|= (1<<5) | (1<<14) | (1<<15);          break;
-		case 7: decodedMP3Answer = 0x76;break;//|= (1<<5) | (1<<13) | (1<<14) | (1<<15);break;
-		case 8: decodedMP3Answer = 0x0086;break;//|= (1<<5) | (1<<16);                    break;
-		case 9: decodedMP3Answer = 0x0096;break;//|= (1<<5) | (1<<13) | (1<<16);          break;
-		case 10: decodedMP3Answer = 0x00A6;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 11: decodedMP3Answer = 0x00B6;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 12: decodedMP3Answer = 0x00C6;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 13: decodedMP3Answer = 0x00D6;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 14: decodedMP3Answer = 0x00E6;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 15: decodedMP3Answer = 0x00F6;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 16: decodedMP3Answer = 0x0106;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 17: decodedMP3Answer = 0x0116;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 18: decodedMP3Answer = 0x0126;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 19: decodedMP3Answer = 0x0136;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		case 20: decodedMP3Answer = 0x0146;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		}*/
+   
       break;
 
 
     case 0x4C://" -> Playing: "
-	  switch(ansbuf[6]){
-        case 0: decodedMP3Answer = 0x07;break;//|= (1<<5);                              break;
-        case 1: decodedMP3Answer = 0x17;break;//|= (1<<5) | (1<<13);                    break;
-        case 2: decodedMP3Answer = 0x27;break;//|= (1<<5) | (1<<14);                    break;
-		case 3: decodedMP3Answer = 0x37;break;//|= (1<<5) | (1<<13) | (1<<14);          break;
-		case 4: decodedMP3Answer = 0x47;break;//|= (1<<5) | (1<<15);                    break;
-		case 5: decodedMP3Answer = 0x57;break;//|= (1<<5) | (1<<13) | (1<<15);          break;
-		case 6: decodedMP3Answer = 0x67;break;//|= (1<<5) | (1<<14) | (1<<15);          break;
-		case 7: decodedMP3Answer = 0x77;break;//|= (1<<5) | (1<<13) | (1<<14) | (1<<15);break;
-		case 8: decodedMP3Answer = 0x0087;break;//|= (1<<5) | (1<<16);                    break;
-		case 9: decodedMP3Answer = 0x0097;break;//|= (1<<5) | (1<<13) | (1<<16);          break;
-		case 10: decodedMP3Answer = 0x00A7;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		
-      }
+    decodedMP3Answer = ansbuf[6];
       break;
 
     case 0x4E: //" -> Folder file count: "
     decodedMP3Answer = ansbuf[6];
-    /*
-      switch(ansbuf[6]){
-        case 0: decodedMP3Answer = 0x08;break;//|= (1<<5);                              break;
-        case 1: decodedMP3Answer = 0x18;break;//|= (1<<5) | (1<<13);                    break;
-        case 2: decodedMP3Answer = 0x28;break;//|= (1<<5) | (1<<14);                    break;
-		case 3: decodedMP3Answer = 0x38;break;//|= (1<<5) | (1<<13) | (1<<14);          break;
-		case 4: decodedMP3Answer = 0x48;break;//|= (1<<5) | (1<<15);                    break;
-		case 5: decodedMP3Answer = 0x58;break;//|= (1<<5) | (1<<13) | (1<<15);          break;
-		case 6: decodedMP3Answer = 0x68;break;//|= (1<<5) | (1<<14) | (1<<15);          break;
-		case 7: decodedMP3Answer = 0x78;break;//|= (1<<5) | (1<<13) | (1<<14) | (1<<15);break;
-		case 8: decodedMP3Answer = 0x0088;break;//|= (1<<5) | (1<<16);                    break;
-		case 9: decodedMP3Answer = 0x0098;break;//|= (1<<5) | (1<<13) | (1<<16);          break;
-		case 10: decodedMP3Answer = 0x00A8;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		
-      }*/
+   
       break;
 
     case 0x4F://" -> Folder count: "
     decodedMP3Answer = ansbuf[6];
-	/*
-      switch(ansbuf[6]){
-        case 0: decodedMP3Answer = 0x09;break;//|= (1<<5);                              break;
-        case 1: decodedMP3Answer = 0x19;break;//|= (1<<5) | (1<<13);                    break;
-        case 2: decodedMP3Answer = 0x29;break;//|= (1<<5) | (1<<14);                    break;
-		case 3: decodedMP3Answer = 0x39;break;//|= (1<<5) | (1<<13) | (1<<14);          break;
-		case 4: decodedMP3Answer = 0x49;break;//|= (1<<5) | (1<<15);                    break;
-		case 5: decodedMP3Answer = 0x59;break;//|= (1<<5) | (1<<13) | (1<<15);          break;
-		case 6: decodedMP3Answer = 0x69;break;//|= (1<<5) | (1<<14) | (1<<15);          break;
-		case 7: decodedMP3Answer = 0x79;break;//|= (1<<5) | (1<<13) | (1<<14) | (1<<15);break;
-		case 8: decodedMP3Answer = 0x0089;break;//|= (1<<5) | (1<<16);                    break;
-		case 9: decodedMP3Answer = 0x0099;break;//|= (1<<5) | (1<<13) | (1<<16);          break;
-		case 10: decodedMP3Answer = 0x00A9;break;//|= (1<<5) | (1<<14) | (1<<16);         break;
-		}*/
+	
       break;
      }
 
