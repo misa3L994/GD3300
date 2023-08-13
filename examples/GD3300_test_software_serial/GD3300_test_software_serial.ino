@@ -34,7 +34,7 @@
  * Esp32 
  * Serial1  SD3/GPIO10/TX1  SD2/GPIO9/RX1
  */
-#include "YX5300.h"
+#include "GD3300.h"
 #include <SoftwareSerial.h>
 
 SoftwareSerial mp3Serial(8, 9); // RX, TX
