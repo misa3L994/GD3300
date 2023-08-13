@@ -39,7 +39,7 @@
 
 SoftwareSerial mp3Serial(8, 9); // RX, TX
 //SoftwareSerial mp3Serial(2, A2); // RX, TX
-YX5300 mp3;
+GD3300 mp3;
 
  uint16_t answerVal;
  String  answer="";
