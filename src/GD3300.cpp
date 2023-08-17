@@ -102,6 +102,11 @@ void GD3300::playF(byte f){
 
    sendCommand(CMD_FOLDER_CYCLE, f, 0);
 }
+void GD3300::playF(byte f,byte n){
+   // Play all files in the f folder
+
+   sendCommand(CMD_PLAY_F_FILE, f, n);
+}
 
 void GD3300::stop(){
    sendCommand(CMD_STOP_PLAY);

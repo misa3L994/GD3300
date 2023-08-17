@@ -79,6 +79,7 @@ class GD3300{
      void pause();                // Pause
 
      void playF(byte f);          // Play all files in the f folder
+     void playF(byte f,byte n);
 
      void stop();                 // Stop playing
 
