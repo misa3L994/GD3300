@@ -60,7 +60,6 @@ class GD3300{
 
      void begin(Stream&);
      
-     String  decodeMP3Answer();
 	 uint16_t MP3Answer();
 
      void playNext();             // Play next file
@@ -74,7 +73,9 @@ class GD3300{
      void setVol(byte v);     // Set Volumen (0-30)
 
      void playSL(byte n);         // Play Single loop  n file.
-     void playSL(byte f, byte n); // Play Single loop play n file from f folder.
+     void playSL(byte f, byte n); // Play Single loop play n file by name from f folder.
+     void playL(bool on);
+
 
      void pause();                // Pause
 

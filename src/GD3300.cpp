@@ -8,26 +8,7 @@
 #include "Arduino.h"
 #include "GD3300.h"
 
-// Uncomment next line if you are using an Arduino Mega.
-//#define mp3 Serial3    // Connect the MP3 Serial Player to the Arduino MEGA Serial3 (14 TX3 -> RX, 15 RX3 -> TX)
 
-//GD3300::GD3300(Stream &stream){
-   //SoftwareSerial Serial3 = SoftwareSerial(10, 11);
-//  this->serial = &stream;
-  //serial->begin(9600);
-//}
-/*
-GD3300::GD3300(){
-   //SoftwareSerial Serial3 = SoftwareSerial(10, 11);
-   Serial3 = new SoftwareSerial(10, 11);
-   _showDebugMessages = false;
-}
-GD3300::GD3300(int RX, int TX){
-   //SoftwareSerial Serial3 = SoftwareSerial(RX, TX);
-   Serial3 = new SoftwareSerial(RX, TX);
-   _showDebugMessages = false;
-}
-*/
 void GD3300::showDebug(bool op){
   // showDebug (op) 0:OFF 1:ON
     _showDebugMessages = op;
@@ -38,13 +19,6 @@ void GD3300::begin(Stream &s){
   serial = &s;
 }
 
-//int GD3300::available(){
-//  return serial->available();
-//}
-
-//char GD3300::read(){
-//  return serial->read();
-//}
 
 void GD3300::playNext(){
   sendCommand(CMD_NEXT);
@@ -75,6 +49,11 @@ void GD3300::playSL(byte n){
 void GD3300::playSL(byte f, byte n){
    // Single loop play n file from f folder
    sendCommand(CMD_PLAY_SLOOP, f, n);
+}
+void GD3300::playL(bool on){
+   // Single loop play n file from f folder
+   if(on)sendCommand(CMD_SET_SPLAY, 0, 0);
+   else sendCommand(CMD_SET_SPLAY, 0, 1);
 }
 
 void GD3300::play(){
@@ -208,68 +187,7 @@ void GD3300::sendCommand(byte command, byte dat1, byte dat2){
 //static uint8_t ansbuf[10] = {0}; // Buffer for the answers.
 uint8_t val;
 
-String GD3300::decodeMP3Answer(){
- // Response Structure  0x7E 0xFF 0x06 RSP 0x00 0x00 DAT 0xFE 0xBA 0xEF
-  //
-  // RSP Response code
-  // DAT Response additional data
 
-  String decodedMP3Answer="";
-
-   decodedMP3Answer=sanswer();
-
-     switch (ansbuf[3])
-     {
-    case 0x3A:
-      decodedMP3Answer += " -> Memory card inserted.";
-      break;
-
-    case 0x3D:
-      decodedMP3Answer += " -> Completed play num " + String(ansbuf[6], DEC);
-      break;
-
-    case 0x40:
-      decodedMP3Answer += " -> Error";
-      break;
-
-    case 0x41:
-      decodedMP3Answer += " -> Data recived correctly. ";
-      break;
-
-    case 0x42:
-      switch(ansbuf[6]){
-        case 0: decodedMP3Answer += " -> Status: stopped";break;
-        case 1: decodedMP3Answer += " -> Status: playing";break;
-        case 2: decodedMP3Answer += " -> Status: paused"; break;
-      }
-      break;
-
-    case 0x43:
-      decodedMP3Answer += " -> Vol playing: " + String(ansbuf[6], DEC);
-      break;
-
-    case 0x48:
-      decodedMP3Answer += " -> File count: " + String(ansbuf[6], DEC);
-      break;
-
-
-    case 0x4C:
-      decodedMP3Answer += " -> Playing: " + String(ansbuf[6], DEC);
-      break;
-
-    case 0x4E:
-      decodedMP3Answer += " -> Folder file count: " + String(ansbuf[6], DEC);
-      break;
-
-    case 0x4F:
-      decodedMP3Answer += " -> Folder count: " + String(ansbuf[6], DEC);
-      break;
-     }
-
-
-   ansbuf[3] = 0; // Clear ansbuff.
-   return decodedMP3Answer;
-}
 
 /******************************************************************************/
 /*funcion :MP3Answer() devuelve el bit correspondiente a la solicitud de estatus*/
